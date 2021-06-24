@@ -1,6 +1,8 @@
 package com.zmonteiro.exercise02;
 
-public class Employee {
+import java.util.Objects;
+
+public abstract class Employee {
     private String name;
     private String email;
     private String number;
@@ -43,5 +45,18 @@ public class Employee {
 
     public void setSalary(Double salary){
         this.salary = salary;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return name.equals(employee.name) && email.equals(employee.email) && number.equals(employee.number) && salary.equals(employee.salary);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, number, salary);
     }
 }
